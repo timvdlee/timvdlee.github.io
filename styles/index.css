@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+/*Zorgt ervoor dat er een border zit bij de tabel*/
+tr,th {
+	border: 1px solid black;
+	font-weight: normal;
+}
+
+.main {
+	/*positie*/
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	/*border*/
+	border-style: solid;
+	border-width: 5px;
+	background: #9ef4ff;
+	
+	border-radius: 5px;
+	max-width: 1050px;
+	
+	
+}
+
+#textbox {
+	padding: 10px;
+	
+}
+
+#title {
+	font-size: 45px;
+}
+
+#subtitle {
+	font-size : 25px;
+	
+}
+
+#image {
+	position: absolute;
+	left: 100px;
+	top: 850px;
+	margin-right: 50px;
+	 border-style: solid;
+	border-width: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	
+}
+
+
+#tabelbox {
+	position: absolute;
+	left: 1250px;
+	top: 100px;
+	margin-right: 50px;
+	 border-style: solid;
+	border-width: 5px;
+	border-radius: 5px;
+	
+	
+}
+#tableheader {
+	font-weight: bold;
+	background-color: #c7c7c7;
+	
+}
+#tabel {
+	padding: 10px;
+}
