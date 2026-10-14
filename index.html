@@ -4,41 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tim - Projects</title>
-    <style>
-      :root {
-        color-scheme: light dark;
-      }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-      body {
-        margin: 0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.5;
-      }
-
-      main {
-        max-width: 42rem;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-      }
-
-      h1 {
-        margin-top: 0;
-      }
-
-      .project-list {
-        padding-left: 1.25rem;
-      }
-    </style>
   </head>
   <body>
-    <main>
+    <main class="container mt-5 container bg-primary-subtle text-body p-3 rounded">
       <h1>Persoonlijke projecten van Tim</h1>
       <p>Welkom! Hieronder een lijst met links naar mijn projecten!</p>
 
-      <ul class="project-list">
-        <li><a href="https://timvdlee.github.io/webCards/">webCards</a></li>
-        <li><a href="https://timvdlee.github.io/photoArchiveMap/">photoArchiveMap</a></li>
-      </ul>
+      <div class="container d-flex">
+
+
+        <div class="card me-3" style="width: 18rem;">
+          <img src="img/webcards.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Web Cards</h5>
+            <p class="card-text">Web application for generating print-ready PDF cards from images</p>
+            <a href="https://tlee.nl/webCards" class="btn btn-primary">tlee.nl/webCards</a>
+          </div>
+        </div>
+        
+        <div class="card me-3" style="width: 18rem;">
+          <img src="img/photoArchive.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Photo archive map</h5>
+            <p class="card-text">Images from the Sleutelstam photo archive tagged with location data</p>
+            <a href="https://tlee.nl/photoArchiveMap" class="btn btn-primary">tlee.nl/photoArchiveMap</a>
+          </div>
+        </div>
+
+        <div class="card me-3" style="width: 18rem;">
+          <img src="img/snor.svg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Snorren spelleider tool</h5>
+            <p class="card-text">Tool to aid with the playing of the werewolves inspried game of Snorren</p>
+            <a href="https://tlee.nl/Snorren" class="btn btn-primary">tlee.nl/Snorren</a>
+          </div>
+        </div>
+
+      </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>
