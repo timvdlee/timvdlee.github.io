@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Doorsturen...</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        text-align: center;
+      }
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border-left-color: #09f;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    <script>
+      (function() {
+        // Replace this with the deployed Apps Script /exec URL.
+        const backendUrl = "https://script.google.com/macros/s/AKfycbxGEn3E7flZmcdsITLxyemgp3n02NBFJFU2ROu43t4eK3wATEcL5Ny9cLuvOhMuUykq/exec";
+        const requestedUrl = window.location.href;
+        const match = window.location.pathname.match(/^\/([^\/]+)\/?$/i);
+
+        if (!match || !match[1]) {
+          showError("Ongeldig doorstuurpad. Gebruik de structuur: tlee.nl/slug");
+          return;
+        }
+
+        const metadata = new URLSearchParams({
+          url: requestedUrl,
+          userAgent: navigator.userAgent,
+          referrer: document.referrer,
+          language: navigator.language
+        });
+        const endpoint = backendUrl + "?" + metadata.toString();
+        fetch(endpoint, { method: "GET", credentials: "omit" })
+          .then(response => {
+            if (!response.ok) throw new Error("Backend returned HTTP " + response.status);
+            return response.json();
+          })
+          .then(result => {
+            if (result.found && result.redirectUrl) {
+              updateStatus("Link gevonden! Je wordt nu doorgestuurd...");
+              window.location.replace(result.redirectUrl);
+            } else {
+              showError("Deze link bestaat niet: " + match[1]);
+            }
+          })
+          .catch(error => {
+            showError("Systeemfout: Kon de link-database niet laden.");
+            console.error(error);
+          });
+
+        function updateStatus(text) {
+          const statusEl = document.getElementById("status-text");
+          if (statusEl) statusEl.innerText = text;
+        }
+
+        function showError(message) {
+          const action = () => {
+            document.body.innerHTML = `
+              <div style="max-width: 400px; padding: 20px;">
+                <h1 style="font-size: 24px; margin-bottom: 10px; color: #d9534f;">404 - Niet Gevonden</h1>
+                <p style="color: #666; margin-bottom: 20px;"></p>
+                <a href="/" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Naar Startpagina</a>
+              </div>
+            `;
+            document.querySelector("p").textContent = message;
+          };
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", action);
+          } else {
+            action();
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="loading-container">
+      <div class="spinner"></div>
+      <p id="status-text" style="font-size: 18px; font-weight: 500;">Link opzoeken...</p>
+    </div>
+
+    <noscript>
+      <div style="max-width: 400px; padding: 20px;">
+        <h1>JavaScript Vereist</h1>
+        <p>Zet JavaScript aan in je browser om automatisch doorgestuurd te worden.</p>
+      </div>
+    </noscript>
+  </body>
+</html>
